@@ -1,0 +1,36 @@
+#!/bin/bash 
+
+apt install curl jq bc -y 
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"  
+rpc_addresses=("https://rpc.sentinel.co:443" "https://sentinel-rpc.polkachu.com:443" "https://sentinel-rpc.validatornode.com:443" "https://sentinel-rpc.badgerbite.io:443" "https://sentinel-rpc.publicnode.com:443" "https://rpc.sentinel.quokkastake.io:443" "https://rpc-sentinel.whispernode.com:443" "https://rpc.sentinel.chaintools.tech:443" "https://rpc.mathnodes.com:443" "https://rpc.dvpn.roomit.xyz:443" "https://rpc.sentinelgrowthdao.com:443")  
+declare -A execution_times  
+# Loop through each node  
+for node in "${rpc_addresses[@]}";   
+do  
+    echo "Testing ${node}..."  
+    start_time=$(date +%s.%N)  
+    curl -s "${node}/block" | jq -r .result.block.header.height  
+    end_time=$(date +%s.%N)  
+    execution_time=$(echo "$end_time - $start_time" | bc)  
+    execution_times["$node"]=$execution_time  
+    echo "Finished testing ${node}, Execution took: $execution_time"  
+done  
+sorted_nodes=($(for node in "${rpc_addresses[@]}"; do echo "$node ${execution_times["$node"]}"; done | sort -k2 -n | awk '{print $1}'))  
+for node in "${sorted_nodes[@]}"; do  
+    echo "Node: $node, Execution Time: ${execution_times["$node"]}"  
+done  
+new_addrs=()  
+for ((a = 0; a <= 4; a++)); do  
+    new_addrs+=("${sorted_nodes[$a]}")  
+done  
+comma_separated=$(IFS=,; echo "${new_addrs[*]}")  
+new_line="rpc_addresses=\"$comma_separated\""  
+echo "$new_line"  
+
+sed -i "s#^rpc_addresses.*#$new_line#" "${HOME}"/.sentinelnode/config.toml
+rm -f .sentinelnode/data.db
+docker restart dvpn-node-sin
+docker logs -f -n 100 dvpn-node-sin
+exit 0
+
+
