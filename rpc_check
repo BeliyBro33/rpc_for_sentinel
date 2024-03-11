@@ -2,7 +2,7 @@
 
 apt install curl jq bc -y 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"  
-rpc_addresses=("https://rpc.sentinel.co:443" "https://sentinel-rpc.polkachu.com:443" "https://sentinel-rpc.validatornode.com:443" "https://sentinel-rpc.badgerbite.io:443" "https://sentinel-rpc.publicnode.com:443" "https://rpc.sentinel.quokkastake.io:443" "https://rpc.sentinel.chaintools.tech:443" "https://rpc.mathnodes.com:443" "https://rpc.dvpn.roomit.xyz:443" "https://rpc.sentinelgrowthdao.com:443")  
+rpc_addresses=("https://rpc.sentinel.co:443" "https://sentinel-rpc.polkachu.com:443" "https://sentinel-rpc.validatornode.com:443" "https://sentinel-rpc.badgerbite.io:443" "https://sentinel-rpc.publicnode.com:443" "https://rpc.sentinel.quokkastake.io:443" "https://rpc.mathnodes.com:443" "https://rpc.dvpn.roomit.xyz:443" "https://rpc.sentinelgrowthdao.com:443")  
 declare -A execution_times  
 # Loop through each node  
 for node in "${rpc_addresses[@]}";   
