@@ -2,7 +2,7 @@
 
 apt install curl jq bc -y 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"  
-rpc_addresses=("rpc.trinityvalidator.com:443" "rpc.dvpn.me:443" "rpc-sentinel-ia.cosmosia.notional.ventures:443"
+rpc_addresses=("rpc.trinityvalidator.com:443" "rpc.dvpn.me:443" "rpc-sentinel-ia.cosmosia.notional.ventures:443" "https://sentinel.declab.pro:443"
 "https://rpc.sentinel.co:443"  "sentinel.rpc.nodeshub.online:443"
 "https://sentinel-rpc.polkachu.com:443" 
 "https://sentinel-rpc.validatornode.com:443"
