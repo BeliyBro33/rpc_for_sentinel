@@ -3,7 +3,8 @@
 apt install curl jq bc -y 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"  
 rpc_addresses=("https://rpc.trinityvalidator.com:443" "https://rpc.dvpn.me:443" "https://rpc-sentinel-ia.cosmosia.notional.ventures:443" "https://sentinel.declab.pro:443"
-"https://rpc.sentinel.co:443" "https://sentinel.rpc.nodeshub.online:443"
+"https://rpc.sentinel.co:443"
+"https://sentinel.rpc.nodeshub.online:443"
 "https://sentinel-rpc.polkachu.com:443" 
 "https://sentinel-rpc.validatornode.com:443"
 "https://sentinel-rpc.badgerbite.io:443" 
@@ -15,6 +16,7 @@ rpc_addresses=("https://rpc.trinityvalidator.com:443" "https://rpc.dvpn.me:443" 
 "https://rpc.dvpn.roomit.xyz:443"
 "https://eu-rpc-sentinel.busurnode.com:443"
 "https://as-rpc-sentinel.busurnode.com:443"
+"https://na-rpc-sentinel.busurnode.com:443"
 "https://rpc.sentinelgrowthdao.com:443")  
 declare -A execution_times  
 # Loop through each node  
